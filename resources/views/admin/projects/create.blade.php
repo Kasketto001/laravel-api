@@ -4,7 +4,7 @@
     <div class="container mt-5 d-flex justify-content-between">
         <h1>New Project</h1>
     </div>
-    <div class="container mx-3">
+    <div class="container">
         @if ($errors->any())
             <div class="alert alert-danger" role="alert">
                 <ul>
@@ -97,6 +97,18 @@
                 </select>
             </div>
             
+
+            <div class="mb-3">
+                @foreach ($technologies as $technology)
+                    <div class="form-check">
+                        <input name="technologies[]" class="form-check-input" type="checkbox" value="" id="$technology-{{$technology->id}}" />
+                        <label class="form-check-label" for="$technology-{{$technology->id}}"> {{ $technology->name }} </label>
+                    </div>
+                    
+                @endforeach
+            </div>
+
+
             <div class="mb-3">
                 <label for="author" class="form-label">Repository Link</label>
                 <input
