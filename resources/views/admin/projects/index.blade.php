@@ -5,12 +5,12 @@
         <h1>All Projects</h1>
         <a class="btn btn-primary d-flex justify-content-center align-items-center px-4" href="{{route('admin.projects.create')}}"><i class="fa fa-plus" aria-hidden="true"></i></a>
     </div>
-    <div class="container mt-3">
+    <div class="container mt-3 ">
         <div
-            class="table-responsive"
+            class="table-responsive rounded-2"
         >
             <table
-                class="table table-striped"
+                class="table table-dark p-5"
             >
                 <thead class="">
                     <tr>
