@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="container d-flex justify-content-center align-items-center">
-                <img class="rounded" src="{{ asset(str_replace('public', 'storage', $project->thumb)) }}" alt="">
+                <img class="rounded" src="{{ asset(str_replace('public', 'storage', $project->thumb)) }}" width="500" alt="">
             </div>
             <h4 class="mt-4">Tipo</h4>
             @if($project->type)
@@ -26,6 +26,18 @@
             <h4 class="mt-4">Autore</h4>
             <p>{{ $project->author }}</p>
 
+            <h4 class="mt-4">Technologies</h4>
+            @forelse ($project->technologies as $technology)
+
+            <span
+                class="badge bg-primary"
+                >{{ $technology->name }}</span
+            >
+            
+                
+            @empty
+               <span>No Technology required. </span>
+            @endforelse
         </div>
     </div>
 </div>

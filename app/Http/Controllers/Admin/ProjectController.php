@@ -35,7 +35,7 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProjectRequest $request)
+        public function store(StoreProjectRequest $request)
     {
         $validated = $request->validated();
 
@@ -47,10 +47,15 @@ class ProjectController extends Controller
             $validated['thumb'] = $image_path;
         }
 
-        Project::create($validated);
-        
+        $project = Project::create($validated);  
+
+        if($request->has('technologies')) {
+            $project->technologies()->attach($request->technologies);  
+        }
+
         return to_route('admin.projects.index');
     }
+
 
     /**
      * Display the specified resource.

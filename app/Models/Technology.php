@@ -11,7 +11,7 @@ class Technology extends Model
 {
     use HasFactory;
 
-
+    protected $fillable = ['name'];
 
     /**
      * The roles that belong to the Technology
@@ -20,6 +20,6 @@ class Technology extends Model
      */
     public function projects(): BelongsToMany
     {
-        return $this->belongsToMany(Project::class);
+        return $this->belongsToMany(Project::class, 'project_technologies');
     }
 }
