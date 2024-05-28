@@ -15,7 +15,10 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Slug</th>
                         <th scope="col">Actions</th>
+
+
                     </tr>
                 </thead>
                 <tbody>
@@ -28,11 +31,12 @@
                                 <td>
                                     <input type="text" name="name" value="{{ $technology->name }}" class="form-control">
                                 </td>
+                                <td>{{ $technology->slug }}</td>
                                 <td>
                                     <button type="submit" class="btn btn-success">Update</button>
-                                </td>
+                                
                             </form>
-                            <td>
+                            
                                 <form action="{{ route('admin.technologies.destroy', $technology) }}" method="POST" style="display:inline-block;">
                                     @csrf
                                     @method('DELETE')

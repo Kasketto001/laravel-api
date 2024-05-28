@@ -30,9 +30,9 @@
                                 </td>
                                 <td>
                                     <button type="submit" class="btn btn-success">Update</button>
-                                </td>
+                            
                             </form>
-                            <td>
+                            
                                 <form action="{{ route('admin.types.destroy', $type) }}" method="POST" style="display:inline-block;">
                                     @csrf
                                     @method('DELETE')
