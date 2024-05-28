@@ -112,7 +112,26 @@
                         @endforeach
                     </select>
             </div>
+
+            <div class="mb-3">
+                @foreach ($technologies as $technology)
+                    <div class="form-check">
+                        <input 
+                            name="technologies[]" 
+                            class="form-check-input" 
+                            type="checkbox" 
+                            value="{{ $technology->id }}" 
+                            id="technology-{{ $technology->id }}" 
+                            {{ $project->technologies->contains($technology) ? 'checked' : '' }}
+                        />
+                        <label class="form-check-label" for="technology-{{ $technology->id }}"> 
+                            {{ $technology->name }} 
+                        </label>
+                    </div>
+                @endforeach
+            </div>
             
+
             <div class="mb-3">
                 <label for="author" class="form-label">Repository Link</label>
                 <input

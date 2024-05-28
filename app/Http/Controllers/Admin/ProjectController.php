@@ -62,7 +62,8 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view('admin.projects.show', compact('project'));
+        $technologies = Technology::all();
+        return view('admin.projects.show', compact('project', 'technologies'));
     }
 
     /**
@@ -71,27 +72,37 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view('admin.projects.edit', compact('project', 'types'));
+        $technologies = Technology::all();
+
+
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateProjectRequest $request, Project $project)
-    {
-        $validated = $request->validated();
+{
+    $validated = $request->validated();
 
-        if ($request->hasFile('thumb')) {
-            if ($project->thumb && Storage::exists($project->thumb)) {
-                Storage::delete($project->thumb);
-            }
-            $validated['thumb'] = $request->file('thumb')->store('public/uploads');
+    if ($request->hasFile('thumb')) {
+        if ($project->thumb && Storage::exists($project->thumb)) {
+            Storage::delete($project->thumb);
         }
-
-        $project->update($validated);
-
-        return redirect()->route('admin.projects.index')->with('success', 'Project updated successfully');
+        $validated['thumb'] = $request->file('thumb')->store('public/uploads');
     }
+
+    $project->update($validated);
+
+    if($request->has('technologies')) {
+        $project->technologies()->sync($request->technologies);
+    } else {
+        $project->technologies()->detach();
+    }
+
+    return redirect()->route('admin.projects.index')->with('success', 'Project updated successfully');
+}
+
 
 
     /**

@@ -14,23 +14,13 @@ class Project extends Model
 
     protected $fillable = ['title', 'slug', 'description', 'author', 'thumb', 'type_id', 'link_repository', 'link_preview'];
 
-
-    public function type()
+    public function type(): BelongsTo
     {
         return $this->belongsTo(Type::class);
     }
 
-
-
-
-    /**
-     * The roles that belong to the Project
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
     public function technologies(): BelongsToMany
     {
         return $this->belongsToMany(Technology::class, 'project_technologies');
     }
 }
-

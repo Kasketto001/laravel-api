@@ -30,7 +30,7 @@
             @forelse ($project->technologies as $technology)
 
             <span
-                class="badge bg-primary"
+                class="badge bg-light text-dark"
                 >{{ $technology->name }}</span
             >
             
